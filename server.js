@@ -219,7 +219,9 @@ app.get('/player_info', function(req, res) {
         .then(function (rows) {
             res.render('pages/player_info',{
         my_title: "Player Information Page",
-        data: rows,
+        result_1: rows,
+        result_2:"",
+        result_3:""
       })
 
         })
@@ -235,7 +237,7 @@ app.get('/player_info/post', function(req, res) {
   var pID= req.query.player_choice;
   var select_query = 'select id,name from football_players;';
   var query1 = 'select * from football_players;';
-  var query2 = 'select * from football_players where id = '+pID+';';
+  var query2 = 'select * from football_players where id = '+ pID +';';
   var query3 = 'select count(*) from football_games where '+pID+'=ANY(players);';
 
   db.task('get-everything', task => {
@@ -251,7 +253,7 @@ app.get('/player_info/post', function(req, res) {
       my_title: "Player Information Page",
       data: data[0],
       result_1: data[1],
-      result_2: data[2],
+      result_2: data[2][0],
       result_3: data[3]
     })
   })

@@ -18,8 +18,8 @@
 							 <!-- TODO: Populate our select with player options
 							 			For each player, set a new option with a value matching the palyer's id, 
 							 			but will display the player's name-->
-							 	<%if (data){%>
-							 	<%data.forEach(function(table){%>
+							 	<%if (result_1){%>
+							 	<%result_1.forEach(function(table){%>
 							 	<option value= "<%= table.id%>"> <%= table.name%> </option>
 							 	<%})%>
 							 	<%}%>
@@ -36,27 +36,27 @@
 							 			If a player has been selected, fill in their information in each of the fields below.
 							 		    You'll need to calculate here the player's average rushing, receiving, and passing yards.-->
 							<th>Year</th>
-							<td> <%= result_1.name%></td>
+							<td> <% if(result_2){ %> <%-result_2.year %> <%}%> </td>
 						</tr>
 						<tr>
 							<th>Major</th>
-							<td>	</td>
+							<td> <% if(result_2){ %> <%-result_2.major %> <%}%>	</td>
 						</tr>
 						<tr>
 							<th>Games Played</th>
-							<td>	</td>
+							<td> <% if(result_2){ %> <%-result_3[0].count %> <%}%>	</td>
 						</tr>
 						<tr>
-							<td>Passing Yards: </td>
-							<td>Avg. Passing Yards: </td>
+							<td>Passing Yards: <% if(result_2){ %> <%-result_2.passing_yards %> <%}%></td>
+							<td>Avg. Passing Yards: <% if(result_2 && result_3){ %> <%-parseInt(result_2.passing_yards/result_3[0].count)%> <%}%></td>
 						</tr>
 						<tr>
-							<td>Rushing Yards: </td>
-							<td>Avg. Rushing Yards: </td>
+							<td>Rushing Yards: <% if(result_2){ %> <%-result_2.rushing_yards %> <%}%></td>
+							<td>Avg. Rushing Yards: <% if(result_2 && result_3){ %> <%-parseInt(result_2.rushing_yards/result_3[0].count)%> <%}%></td>
 						</tr>
 						<tr>
-							<td>Receiving Yards: </td>
-							<td>Avg. Receiving Yards: </td>
+							<td>Receiving Yards: <% if(result_2){ %> <%-result_2.receiving_yards %> <%}%></td>
+							<td>Avg. Receiving Yards: <% if(result_2 && result_3){ %> <%-parseInt(result_2.receiving_yards/result_3[0].count)%> <%}%></td>
 						</tr>
 					</table>
 				</div>
